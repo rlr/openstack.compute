@@ -12,7 +12,7 @@ Usage
 First create an instance of :class:`Compute` with your credentials::
 
     >>> from openstack.compute import Compute
-    >>> compute = Compute(USERNAME, API_KEY)
+    >>> compute = Compute(username=USERNAME, apikey=API_KEY)
 
 Then call methods on the :class:`Compute` object:
 
@@ -55,8 +55,36 @@ For example::
      <Flavor: 8GB server>,
      <Flavor: 15.5GB server>]
 
+    >>> compute.images.list()
+    [<Image: Windows Server 2008 R2 x64 - MSSQL2K8R2>,
+     <Image: Fedora 14>,
+     <Image: Red Hat Enterprise Linux 5.5>,
+     <Image: Windows Server 2003 R2 SP2 x86>,
+     <Image: Oracle EL Server Release 5 Update 4>,
+     <Image: Windows Server 2003 R2 SP2 x64>,
+     <Image: Gentoo 10.1>,
+     <Image: Windows Server 2008 SP2 x86>,
+     <Image: Windows Server 2008 SP2 x64 - MSSQL2K8R2>,
+     <Image: Ubuntu 9.10 (karmic)>,
+     <Image: Ubuntu 10.04 LTS (lucid)>,
+     <Image: Arch 2010.05>,
+     <Image: Oracle EL JeOS Release 5 Update 3>,
+     <Image: Ubuntu 8.04.2 LTS (hardy)>,
+     <Image: CentOS 5.4>,
+     <Image: Fedora 13>,
+     <Image: Windows Server 2008 SP2 x64>,
+     <Image: CentOS 5.5>,
+     <Image: Ubuntu 10.10 (maverick)>,
+     <Image: Windows Server 2008 R2 x64>,
+     <Image: Windows Server 2008 SP2 x86 - MSSQL2K8R2>,
+     <Image: Red Hat Enterprise Linux 5.4>,
+     <Image: Debian 5.0 (lenny)>,
+     <Image: 20110118>,
+     <Image: 20110118>]
+
     >>> fl = compute.flavors.find(ram=512)
-    >>> cloudservers.servers.create("my-server", flavor=fl)
+    >>> im = compute.images.find('Ubuntu 10.10 (maverick)')
+    >>> compute.servers.create("my-server", image=im, flavor=fl)
     <Server: my-server>
 
 For more information, see the reference:
